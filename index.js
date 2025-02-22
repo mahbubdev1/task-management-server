@@ -43,8 +43,9 @@ async function run() {
         })
 
         // task related apis
-        app.get('/tasks', async (req, res) => {
-            const result = await taskCollection.find().toArray();
+        app.get('/tasks/:email', async (req, res) => {
+            const email = req.params.email;
+            const result = await taskCollection.find({email}).toArray();
             res.send(result);
         });
 
